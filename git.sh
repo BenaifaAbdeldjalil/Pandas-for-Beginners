@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "git starting ......"
+echo "\n"
 
 # Vérifier qu'un paramètre est passé
 if [ -z "$1" ]; then
@@ -10,19 +11,25 @@ fi
 
 PARAM="$1"
 
-echo "Add file"
+echo "Adding file : $PARAM ..."
+echo "\n"
+echo "\n"
 
 # Exemple 1 : ajouter tous les fichiers modifiés
 git add .
 
-echo "Commit..."
+echo "Commiting  file : $PARAM ...."
+echo "\n"
 # Commit avec message personnalisé
 git commit -m "add modifications $PARAM"
 echo "Commit OK!"
+echo "\n"
+echo "\n"
 
-echo "Push..."
+echo "Pushing file : $PARAM ..."
+echo "\n"
 # Push
 git push
 
-
+echo "\n"
 echo "git ok!"
