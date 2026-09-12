@@ -25,10 +25,14 @@ print(df.columns) #['CustomerID', 'First_Name', 'Last_Name', 'Phone_Number', 'Ad
 #df['Last_Name']=df['Last_Name'].astype(str).str.strip("_")
 
 #OR 
-df['Last_Name']=df['Last_Name'].astype(str).str.strip("123./_")
+df['Last_Name']=df['Last_Name'].str.strip("123./_")
 print(df)
 
-
+#phone number
+df['Phone_Number']=df['Phone_Number'].str.replace('[^a-zA-Z-0-9]','')
+print(df['Phone_Number'])
+df['Phone_Number']=df['Phone_Number'].apply(lambda x: x[0-3]+'-'+[3-5]+'-'+[6-10])
+print(df['Phone_Number'])
 
 
 
