@@ -39,6 +39,46 @@ print("##############df7#################")
 df7 = df1.merge(df2,how="outer")
 print(df7)
 
+#cross
+print("##############df7#################")
+df8 = df1.merge(df2,how="cross")
+print(df8)
+
+# --------------------------Join---------------------------
+print("--------------------------Join---------------------------")
+# dfj1=df1.join(df2) #ValueError: columns overlap but no suffix specified: Index(['FellowshipID', 'FirstName'], dtype='str')
+
+dfj1=df1.join(df2,on="FellowshipID",how="outer",lsuffix="_l",rsuffix="_r")
+print(dfj1)
+dfj2=df1.set_index('FellowshipID').join(df2.set_index('FellowshipID'),lsuffix="_l")
+print(dfj2)
+#   OR
+dfj3=df1.set_index('FellowshipID').join(df2.set_index('FellowshipID'),lsuffix="_l",on="FellowshipID")
+print(dfj3)
+
+
+# --------------------------concat---------------------------
+print("--------------------------concat---------------------------")
+#option 1 
+df_concat=pd.concat([df1,df2]) #===df_concat1=pd.concat([df1,df2],join='outer')
+print(df_concat)
+
+#option 2
+df_concat1=pd.concat([df1,df2],join='inner') #only inner or outer
+print(df_concat1)
+
+df_concat2=pd.concat([df1,df2],join='outer') #only inner or outer
+print(df_concat2)
+
+df_concat3=pd.concat([df1,df2],join='outer',axis=1) #only inner or outer
+print(df_concat3)
+
+df_concat4=pd.concat([df1,df2],join='outer',axis=0) #only inner or outer
+print(df_concat4)
+
+
+
+
 
 
 
