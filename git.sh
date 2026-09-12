@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+
+echo 
 echo "git starting ......"
 echo 
 
