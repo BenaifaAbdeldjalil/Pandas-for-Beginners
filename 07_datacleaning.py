@@ -13,7 +13,7 @@ print(df) #[20 rows x 8 columns]
 
 #drop unusful columns
 print(df.columns) #['CustomerID', 'First_Name', 'Last_Name', 'Phone_Number', 'Address','Paying Customer', 'Do_Not_Contact', 'Not_Useful_Column']
-n_usful=["Not_Useful_Column","Do_Not_Contact"]
+n_usful=["Not_Useful_Column"]
 df.drop(columns=n_usful,inplace=True)
 print(df.columns) #['CustomerID', 'First_Name', 'Last_Name', 'Phone_Number', 'Address','Paying Customer']
 
@@ -51,13 +51,38 @@ print("Adress------------------")
 df[["street","town","PC"]]=df["Address"].str.split(pat=',',expand=True)
 df[["street","town","PC"]]=df[["street","town","PC"]].fillna("")
 df = df.drop(columns="Address")
-print(df)
+#print(df)
 
 
 
 #Adress ----------------------'Paying Customer'----------------------------
 print("Adress------------------'Paying Customer'")
+df['Paying Customer']=df['Paying Customer'].str.upper().replace(["YES","NO","N/A"],["Y","N",""])
+df['Do_Not_Contact']=df['Do_Not_Contact'].str.upper().replace(["YES","NO","N/A"],["Y","N",""])
 
+print(df['Paying Customer'])
+
+#replace Nan
+df = df.fillna("")
+print(df[:5])
+
+#filtering 
+#person how we can contacte only and have phone number
+
+df1=df.copy()
+
+for i in df.index:
+    if df1.loc[i,"Do_Not_Contact"]=="Y":
+        df1.drop(i,inplace=True)
+print(df1) #[16 rows x 9 columns]
+
+#Or
+
+df=df[df["Do_Not_Contact"]!="Y"]
+print(df) #[16 rows x 9 columns]
+
+df=df.dropna(subset='Phone_Number',inplace=True)
+print(df)
 
 
 
