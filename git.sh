@@ -22,12 +22,12 @@ git add .
 echo "Commiting  file : $PARAM ...."
 echo 
 # Commit avec message personnalisé
-git commit -m "add modifications $PARAM $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') "
+git commit -m "add modifications $PARAM  $(date '+%Y-%m-%d %H:%M:%S') "
 echo "Commit OK!"
 echo 
 echo 
 
-echo "Pushing file : $PARAM ... $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') "
+echo "Pushing file : $PARAM ... $(date '+%Y-%m-%d %H:%M:%S') "
 echo 
 # Push
 git push
