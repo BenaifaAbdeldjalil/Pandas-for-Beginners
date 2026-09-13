@@ -29,9 +29,20 @@ df['Last_Name']=df['Last_Name'].str.strip("123./_")
 print(df)
 
 #phone number
-df['Phone_Number']=df['Phone_Number'].str.replace('[^a-zA-Z-0-9]','')
+df['Phone_Number']=df['Phone_Number'].str.replace(r'[^a-zA-Z0-9]',"",regex=True)
 print(df['Phone_Number'])
-df['Phone_Number']=df['Phone_Number'].apply(lambda x: x[0-3]+'-'+[3-5]+'-'+[6-10])
+
+# OR
+#df['Phone_Number'] = df['Phone_Number'].str.replace(r'\D', '', regex=True)
+
+#remouve NaN and Na
+print("------------------")
+df['Phone_Number']=df['Phone_Number'].fillna("").replace("Na","")
+print(df['Phone_Number'])
+
+# make phone number as xxx-xxx-xxx
+df['Phone_Number']=df['Phone_Number'].apply(lambda x: x[:3]+"-"+x[3-5]+"-"+x[6-10]  if isinstance(x, str) and len(x) >= 10
+    else x)
 print(df['Phone_Number'])
 
 
