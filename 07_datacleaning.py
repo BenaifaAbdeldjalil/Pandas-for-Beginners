@@ -28,7 +28,7 @@ print(df.columns) #['CustomerID', 'First_Name', 'Last_Name', 'Phone_Number', 'Ad
 df['Last_Name']=df['Last_Name'].str.strip("123./_")
 print(df)
 
-#phone number
+#phone number --------------------------------------------------
 df['Phone_Number']=df['Phone_Number'].str.replace(r'[^a-zA-Z0-9]',"",regex=True)
 print(df['Phone_Number'])
 
@@ -46,10 +46,17 @@ df['Phone_Number']=df['Phone_Number'].apply(lambda x: x[:3]+"-"+x[3-5]+"-"+x[6-1
 print(df['Phone_Number'])
 
 
+#Adress --------------------------------------------------
+print("Adress------------------")
+df[["street","town","PC"]]=df["Address"].str.split(pat=',',expand=True)
+df[["street","town","PC"]]=df[["street","town","PC"]].fillna("")
+df = df.drop(columns="Address")
+print(df)
 
 
 
-
+#Adress ----------------------'Paying Customer'----------------------------
+print("Adress------------------'Paying Customer'")
 
 
 
